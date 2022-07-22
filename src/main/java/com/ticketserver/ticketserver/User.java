@@ -1,9 +1,12 @@
 package com.ticketserver.ticketserver;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,10 +15,14 @@ public class User {
 
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     private int userID;
 
     @Column(name = "user_name")
     private String userName;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Ticket> tickets;
 
     public int getUserID() {
         return this.getUserID();

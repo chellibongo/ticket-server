@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +15,9 @@ public class Ticket {
     @GeneratedValue
     private int ticketID;
 
-    @Column(name = "user_id")
-    private int userID;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "content", nullable = false)
     private String content;
@@ -28,7 +31,7 @@ public class Ticket {
     }
 
     public int getUserID() {
-        return this.userID;
+        return this.user.getUserID();
     }
 
     public String getContent() {
