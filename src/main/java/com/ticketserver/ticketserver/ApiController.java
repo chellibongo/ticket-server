@@ -21,6 +21,11 @@ public class ApiController {
         return userRepository.findAll();
     }
 
+    @GetMapping(path = "/users/findByName")
+    public @ResponseBody Iterable<User> getUserByName(@RequestParam String name) {
+        return userRepository.findUserByUserName(name);
+    }
+
     @GetMapping(path = "/all/tickets")
     public @ResponseBody Iterable<Ticket> getAllTickets() {
         return ticketRepository.findAll();
