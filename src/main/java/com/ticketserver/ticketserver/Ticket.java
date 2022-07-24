@@ -22,6 +22,10 @@ public class Ticket {
     @Column(name = "content", nullable = false)
     private String content;
 
+    public Ticket() {
+        user = new User();
+    }
+
     public int getTicketID() {
         return this.ticketID;
     }
@@ -32,6 +36,10 @@ public class Ticket {
 
     public int getUserID() {
         return this.user.getUserID();
+    }
+
+    public void setUserID(int userID) {
+        this.user.setUserID(userID);
     }
 
     public String getContent() {

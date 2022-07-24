@@ -41,16 +41,21 @@ public class ApiController {
         return "User added";
     }
 
-    /*
-     * Figure out how to find userID and add a ticket that links to correct user, ?set so users have to have unique username then find userID by username
-     */
     @PostMapping(value="/ticket/add")
-    public @ResponseBody String postMethodName(@RequestParam String userName, String content) {
+    public @ResponseBody String postMethodName(@RequestParam int userID, String content) {
         Ticket ticket = new Ticket();
         ticket.setContent(content);
-        ticketRepository.save(ticket);
+        //check if user with given userID exists
+        if(userRepository.existsById(userID)) {
+            ticket.setUserID(userID);
+            ticketRepository.save(ticket);
+            return "Ticket added";
+        } else {
+            return "User does not exist, ticket not added";
+        }
         
-        return "Ticket added";
+        
+        
     }
     
 
